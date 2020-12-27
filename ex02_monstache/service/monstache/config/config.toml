@@ -1,0 +1,25 @@
+mongo-url = "mongodb://admin:admin@s-mongodb:27017"
+
+elasticsearch-urls = ["http://s-es:9200"]
+elasticsearch-max-seconds = 5
+#elasticsearch-max-conns = 1
+
+#direct-read-namespaces = ["mydb.test"] # read direct from the view of the collection to seed index
+#direct-read-split-max = 15
+change-stream-namespaces = ["mydb.test"] # change events happen on the underlying collections not views
+
+verbose = true
+enable-http-server = true
+resume = true
+resume-name = "default"
+
+[logs]
+error = "./monstache/logs/error.log" 
+info = "./monstache/logs/info.log" 
+warn = "./monstache/logs/warn.log"
+trace = "./monstache/logs/trace.log"
+stats = "./monstache/logs/stats.log"
+
+[[mapping]]
+namespace = "mydb.test" # map change events on the thing collection to the things index
+index = "test"

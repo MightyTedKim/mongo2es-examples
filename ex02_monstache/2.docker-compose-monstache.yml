@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  # monstache
+  s-monstache:
+    image: rwynn/monstache:6.4.1
+    container_name: c-monstache
+    command: -f /monstache/config/config.toml
+    environment:
+      TZ: Asia/Seoul
+    volumes:
+      - ./service/monstache/config/config.toml:/monstache/config/config.toml
+      - ./logs/monstache:/monstache/logs
+    networks:
+      - portal_network
+networks:
+  portal_network:
+    
