@@ -1,4 +1,4 @@
-# two ways to insert mongodb data to elasticsearch
+# working on monstache demo.
 monstache is a great third party tool for synchronizing data
 it supports all insert/update/delete. also has a great example on github to follow
 - https://github.com/rwynn/monstache

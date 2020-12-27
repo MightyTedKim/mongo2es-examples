@@ -14,10 +14,10 @@ People would have different purpose
 
 Will cover all 4 of these circumstances.
 
-# 1. Logstash
+# 1. Logstash-input-plugin
 
 using logstash, there are two ways to insert mongodb data to elasticsearch.
-`logstash-input-mongodb plugin` and `jdbc plugin`.
+`logstash-input-mongodb plugin`
 both plugins are useful while they do have different purpose.
 hope this example helps people who needs to transfer mongo's _id to es's _id
 
@@ -67,7 +67,7 @@ hope this example helps people who needs to transfer mongo's _id to es's _id
 
 ### Logstash-input-plugin
 
-#### 2-1.dc-input-stringId.yml  : <ERROR>
+#### 2-1.dc-input-stringId.yml  : <ERROR> comes out
 
 ```
 docker-compose -f .\2-1.docker-compose-input-stringId.yml up -d 
@@ -85,23 +85,28 @@ error comes out because I inserted _id which is a string type
 [WARN ][logstash.inputs.mongodb  ][main][88302e7ea6ef3ac784d5537611eb0478d8803f1f4089f4269a9a58ffb444163c] MongoDB Input threw an exception, restarting {:exception=>#<BSON::ObjectId::Invalid: 'A001' is an invalid ObjectId.>}
 ```
 
-![1609078467777](C:\Users\deet1\AppData\Roaming\Typora\typora-user-images\1609078467777.png)
+| sample csv                                                   | Fail log                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![image](https://user-images.githubusercontent.com/38391144/103174318-703fd500-48a4-11eb-822d-7a3cb9d3df6f.png) | ![image](https://user-images.githubusercontent.com/38391144/103173877-1558ae80-48a1-11eb-88c2-6681ffac78cf.png) |
+
 
 #### 2-2.dc-input-hashId.yml
 
 ```
 docker-compose -f .\2-2.docker-compose-input-hashId.yml up -d 
 docker exec -it c-mongodb bash
-mongoimport -d mydb -c test_stringId --type csv --file /csv/test_hashId.csv --headerline
+mongoimport -d mydb -c test_hashId --type csv --file /csv/test_hashId.csv --headerline
 ```
 
-![1609078455968](C:\Users\deet1\AppData\Roaming\Typora\typora-user-images\1609078455968.png)
+_id comes out to be safe
 
-![1609078445921](C:\Users\deet1\AppData\Roaming\Typora\typora-user-images\1609078445921.png)
+| sample csv                                                   | Sucess Log                                                   | Es Example                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![image](https://user-images.githubusercontent.com/38391144/103175085-cadc2f80-48aa-11eb-8627-63e635a230c7.png) | ![image](https://user-images.githubusercontent.com/38391144/103175092-d7608800-48aa-11eb-9462-93bf6d1d8283.png) | ![image](https://user-images.githubusercontent.com/38391144/103175101-e6dfd100-48aa-11eb-9d70-4ccb9ab63ee0.png) |
 
----
+  
 
-### Jdbc plugin 
+# 2. Logstash-jdbc-plugin
 
 This part was tricky. versions are different, most of the info on stackoverflow are `mongojdbc1.3.jar/mongojdbc1.2.jar/mongojdbc1.6.jar` 
 
@@ -127,13 +132,17 @@ working on it :(
 
 working on it :(
 
-
-
-# 2. Monstache
+# 3. Monstache
 
 working on it :(
 
 # Etc
 
 if your korean try reading my blog below
+
+1. logstash-input-plugin : https://blog.naver.com/deet1107/222187443947
+2. jdbc plugin : https://blog.naver.com/deet1107/222187516046
+3. monstache : working on it :()
+
+
 
