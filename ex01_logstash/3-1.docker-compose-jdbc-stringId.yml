@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+   #logstash
+  s-logstash:
+    image: docker.elastic.co/logstash/logstash-oss:7.8.1
+    container_name: c-logstash-jdbc-with-id
+    volumes:
+      - ./service/elk/logstash/jdbc/MongoDbJdbcDriver:/etc/logstash/jdbc/MongoDbJdbcDriver
+      - ./service/elk/logstash/conf/mongodata_with_id.conf:/etc/logstash/conf.d/mongodata_with_id.conf
+    command: bin/logstash -f /etc/logstash/conf.d/mongodata_with_id.conf
+    networks:
+      - portal_network
+networks:
+  portal_network:

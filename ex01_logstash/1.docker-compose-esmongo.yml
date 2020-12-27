@@ -1,0 +1,43 @@
+version: '3.2'
+services:
+  #ES
+  s-es:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.8.1
+    container_name: c-es
+    volumes:
+      - ./service/elk/es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./data/es:/usr/share/elasticsearch/data
+      - ./logs/es:/usr/share/elasticsearch/logs
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    networks:
+      - portal_network
+  # mongo
+  s-mongodb:
+    image: mongo:4.2.3-bionic
+    container_name: c-mongodb
+    volumes:
+      - ./service/mongodb/csv:/csv
+      - ./data/mongodb:/data/db
+      - ./logs/mongodb:/var/log/mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - portal_network
+  #kibana
+  s-kibana:
+    image:  docker.elastic.co/kibana/kibana-oss:7.8.1
+    container_name: c-kibana  
+    ports:
+      - "5601:5601"
+    volumes:
+      - ./service/elk/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - ./logs/kibana:/usr/share/kibana/logs
+    networks:
+      - portal_network
+networks:
+  portal_network:
+    

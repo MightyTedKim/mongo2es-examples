@@ -1,0 +1,19 @@
+version: '3.2'
+services:
+  #logstash
+  s-logstash:
+    build:
+      context: service/elk/logstash/
+    image: tedkim/logstash_test:7.8.1
+    container_name: c-logstash-input-stringId
+    volumes:      
+      - ./service/elk/logstash/opt/logstash-mongodb:/opt/logstash-mongodb
+      - ./service/elk/logstash/conf:/etc/logstash/conf.d
+    command: bin/logstash -f /etc/logstash/conf.d/2-1.input_stringId.conf
+    environment:
+      LS_JAVA_OPTS: "-Xmx1024m -Xms256m"
+    networks:
+      - portal_network
+networks:
+  portal_network:
+    
