@@ -2,3 +2,4 @@ ex01_logstash/data/
 ex01_logstash/logs/
 ex01_logstash/service/elk/logstash/opt/logstash-mongodb/logstash_sqlite.db
 ex01_logstash/service/mongodb/MongoDbJdbcDriver/
+*.jar

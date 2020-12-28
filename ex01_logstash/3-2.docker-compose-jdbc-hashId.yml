@@ -3,11 +3,11 @@ services:
    #logstash
   s-logstash:
     image: docker.elastic.co/logstash/logstash-oss:7.8.1
-    container_name: c-logstash-jdbc-without-id
+    container_name: c-logstash-jdbc-hashId
     volumes:
       - ./service/elk/logstash/jdbc/MongoDbJdbcDriver:/etc/logstash/jdbc/MongoDbJdbcDriver
-      - ./service/elk/logstash/conf/mongodata_without_id.conf:/etc/logstash/conf.d/mongodata_without_id.conf
-    command: bin/logstash -f /etc/logstash/conf.d/mongodata_without_id.conf
+      - ./service/elk/logstash/conf:/etc/logstash/conf.d
+    command: bin/logstash -f /etc/logstash/conf.d/3-2.jdbc_hashId.conf
     networks:
       - portal_network
 networks:
