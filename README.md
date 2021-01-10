@@ -118,7 +118,7 @@ or
 
 https://dbschema.com/jdbc-drivers/MongoDbJdbcDriver.zip
 
-![1609079783269](C:\Users\deet1\AppData\Roaming\Typora\typora-user-images\1609079783269.png)
+![image](https://user-images.githubusercontent.com/38391144/104128660-48746500-53ac-11eb-99ad-808db7246181.png)
 
 #### 3-1.dc-jdbc-stringId.ym
 
@@ -142,7 +142,6 @@ if your korean try reading my blog below
 
 1. logstash-input-plugin : https://blog.naver.com/deet1107/222187443947
 2. jdbc plugin : https://blog.naver.com/deet1107/222187516046
-3. monstache : working on it :()
-
+3. monstache : https://blog.naver.com/deet1107/222201939292
 
 

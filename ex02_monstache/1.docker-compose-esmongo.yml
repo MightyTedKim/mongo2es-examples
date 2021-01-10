@@ -20,9 +20,22 @@ services:
     image: mongo:4.2.3-bionic
     container_name: c-mongodb
     volumes:
-      - ./service/mongodb/test.csv:/test.csv
+      - ./service/mongodb/scripts:/scripts
       - ./data/mongodb:/data/db
       - ./logs/mongodb:/var/log/mongodb
+    working_dir: /scripts
+    command: /scripts/mongo-run.sh
+    environment:
+      MONGO_REPLICA_SET_NAME: rs0
+      MONGO_REPLICAS: s-mongodb:27017
+      MONGO_REPLICA_SET_MEMBERS: "[{'_id':0,'host':'s-mongodb:27017','priority':1}]"
+      MONGO_USER_ROOT_NAME: admin
+      MONGO_USER_ROOT_PASSWORD: admin
+      MONGO_USER_APP_NAME: tedkim
+      MONGO_USER_APP_PASSWORD: tedkim
+      MONGO_DB_NAME: mydb
+      MONGO_BIND_IP: "0.0.0.0"
+
     ports:
       - "27017:27017"
     networks:

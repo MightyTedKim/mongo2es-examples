@@ -6,7 +6,7 @@ elasticsearch-max-seconds = 5
 
 #direct-read-namespaces = ["mydb.test"] # read direct from the view of the collection to seed index
 #direct-read-split-max = 15
-change-stream-namespaces = ["mydb.test"] # change events happen on the underlying collections not views
+change-stream-namespaces = [] # change events happen on the underlying collections not views
 
 verbose = true
 enable-http-server = true
